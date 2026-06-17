@@ -109,12 +109,12 @@ export default function HeroSection() {
           <div className="flex-1 flex justify-center relative w-full">
             
             {/* Animated Base Circle */}
-            <motion.div 
+            {/* <motion.div 
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 1, ease: "circOut" }}
               className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] border-2 border-dashed border-emerald-200 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            />
+            /> */}
 
             {/* Feature Badge 1 */}
             <motion.div 
@@ -162,7 +162,7 @@ export default function HeroSection() {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <Image
-                  src="/images/bottle1.jpeg"
+                  src="/images/bottle2.png"
                   alt="EcoShield Spray Bottle"
                   width={500}
                   height={600}

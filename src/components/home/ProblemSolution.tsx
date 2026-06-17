@@ -88,7 +88,7 @@ export default function ProblemSolution() {
               className="relative z-10"
             >
               <Image 
-                src="/images/bottle1.jpeg" 
+                src="/images/bottle2.png" 
                 alt="EcoShield Bottle" 
                 width={350} 
                 height={500} 
