@@ -1,3 +1,19 @@
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import { 
+  CheckCircle2, 
+  XCircle, 
+  Beaker, 
+  ShieldCheck, 
+  Droplets, 
+  Zap, 
+  Search,
+  Award,
+  TestTube2,
+  FileSpreadsheet
+} from "lucide-react";
+
 const results = [
   { test: "Water Resistance", method: "Spray test (AATCC 22)", result: "90% Protection", rating: 90, badge: "Excellent" },
   { test: "Dust Resistance", method: "Chamber exposure test", result: "85% Protection", rating: 85, badge: "Very Good" },
@@ -10,106 +26,135 @@ const results = [
 const comparisons = [
   { feature: "Eco-Friendly Formula", ecoshield: true, commercial: false },
   { feature: "Rice Husk Derived", ecoshield: true, commercial: false },
-  { feature: "PFAS-Free", ecoshield: true, commercial: false },
-  { feature: "Works on All Materials", ecoshield: true, commercial: true },
+  { feature: "PFAS-Free (Non-Toxic)", ecoshield: true, commercial: false },
+  { feature: "Breathable Matrix", ecoshield: true, commercial: true },
   { feature: "Water Resistance 80%+", ecoshield: true, commercial: true },
-  { feature: "Affordable (< PKR 1000)", ecoshield: true, commercial: false },
+  { feature: "Affordable Price", ecoshield: true, commercial: false },
 ];
 
 export default function TestingPage() {
   return (
-    <div className="bg-white">
-      {/* Header */}
-      <section className="bg-gradient-to-br from-primary-light to-white py-20 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <span className="text-xs uppercase tracking-widest text-primary font-bold">Lab Verified</span>
-          <h1 className="font-display font-extrabold text-5xl text-gray-900 mt-2 mb-4">Testing & Results</h1>
-          <p className="text-gray-500 text-lg">
-            Every claim is backed by structured testing protocols. Here's the data.
-          </p>
+    <div className="bg-white text-slate-900">
+      
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-10 pb-20 lg:pt-16 lg:pb-28 bg-[rgb(246,250,247)]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-emerald-100 shadow-sm mb-6">
+              <Award className="w-4 h-4 text-emerald-600" />
+              <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-800">ISO Standards Followed</span>
+            </div>
+            <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              Proven by <span className="text-emerald-600 italic">Data.</span>
+            </h1>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              We don't just make claims. Every EcoShield bottle is backed by rigorous 
+              laboratory testing and real-world durability simulations.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Results Table */}
-      <section className="py-16 bg-neutral">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <span className="text-xs uppercase tracking-widest text-primary font-bold">Data</span>
-            <h2 className="font-display font-bold text-3xl text-gray-900 mt-2">Test Results Summary</h2>
-          </div>
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <table className="w-full text-sm">
-              <thead className="bg-primary text-white">
-                <tr>
-                  <th className="py-3 px-5 text-left font-semibold">Test</th>
-                  <th className="py-3 px-5 text-left font-semibold hidden md:table-cell">Method</th>
-                  <th className="py-3 px-5 text-left font-semibold">Result</th>
-                  <th className="py-3 px-5 text-left font-semibold">Rating</th>
-                  <th className="py-3 px-5 text-left font-semibold">Badge</th>
-                </tr>
-              </thead>
-              <tbody>
-                {results.map((r, i) => (
-                  <tr key={r.test} className={i % 2 === 0 ? "bg-white" : "bg-green-50"}>
-                    <td className="py-3 px-5 font-medium text-gray-800">{r.test}</td>
-                    <td className="py-3 px-5 text-gray-400 hidden md:table-cell text-xs">{r.method}</td>
-                    <td className="py-3 px-5 font-bold text-primary">{r.result}</td>
-                    <td className="py-3 px-5">
-                      <div className="w-24 bg-gray-100 rounded-full h-2">
-                        <div
-                          className="bg-primary h-2 rounded-full"
-                          style={{ width: `${r.rating}%` }}
-                        />
-                      </div>
-                      <span className="text-xs text-gray-400 mt-0.5 block">{r.rating}%</span>
-                    </td>
-                    <td className="py-3 px-5">
-                      <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                        r.badge === "Excellent" ? "bg-green-100 text-green-700" :
-                        r.badge === "Very Good" ? "bg-blue-100 text-blue-700" :
-                        r.badge === "Safe" ? "bg-purple-100 text-purple-700" :
-                        "bg-yellow-100 text-yellow-700"
-                      }`}>
-                        {r.badge}
-                      </span>
-                    </td>
+      {/* --- DATA DASHBOARD --- */}
+      <section className="py-20 -mt-10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-emerald-900/5 border border-slate-100 overflow-hidden">
+            <div className="p-8 border-b border-slate-50 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-4">
+               <div className="flex items-center gap-3">
+                  <div className="p-2 bg-emerald-600 rounded-lg text-white">
+                    <FileSpreadsheet size={20} />
+                  </div>
+                  <h2 className="font-bold text-xl uppercase tracking-tight">Test Results Summary</h2>
+               </div>
+               <div className="text-xs font-mono text-slate-400 bg-white px-3 py-1 rounded-md border border-slate-100">
+                  REF: ES-LAB-2024-X1
+               </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="text-slate-400 text-[11px] uppercase tracking-widest border-b border-slate-50">
+                    <th className="py-6 px-8 font-semibold text-emerald-600">Testing Protocol</th>
+                    <th className="py-6 px-8 font-semibold hidden md:table-cell">Methodology</th>
+                    <th className="py-6 px-8 font-semibold">Live Result</th>
+                    <th className="py-6 px-8 font-semibold">Success Rate</th>
+                    <th className="py-6 px-8 font-semibold">Certification</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-50">
+                  {results.map((r, i) => (
+                    <tr key={i} className="hover:bg-slate-50/50 transition-colors group">
+                      <td className="py-5 px-8 font-bold text-slate-800">{r.test}</td>
+                      <td className="py-5 px-8 text-slate-400 text-sm hidden md:table-cell italic">{r.method}</td>
+                      <td className="py-5 px-8 font-mono text-emerald-600 font-bold">{r.result}</td>
+                      <td className="py-5 px-8">
+                        <div className="flex items-center gap-3">
+                          <div className="w-24 bg-slate-100 rounded-full h-1.5">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${r.rating}%` }}
+                              className="bg-emerald-500 h-1.5 rounded-full"
+                            />
+                          </div>
+                          <span className="text-[10px] font-bold text-slate-400">{r.rating}%</span>
+                        </div>
+                      </td>
+                      <td className="py-5 px-8 text-right md:text-left">
+                        <span className={`text-[10px] font-black uppercase tracking-tighter px-2.5 py-1 rounded-md ${
+                          r.badge === "Excellent" || r.badge === "Safe" 
+                            ? "bg-emerald-100 text-emerald-700" 
+                            : "bg-blue-100 text-blue-700"
+                        }`}>
+                          {r.badge}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Before After Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <span className="text-xs uppercase tracking-widest text-primary font-bold">Visual Proof</span>
-          <h2 className="font-display font-bold text-3xl text-gray-900 mt-2 mb-12">Before vs After</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* --- VISUAL PROOF (BEFORE/AFTER) --- */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold mb-4">Laboratory Visual Proof</h2>
+            <p className="text-slate-500">Comparing unprotected fibers with EcoShield treated nano-layers.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { label: "Water Test", before: "Water soaks in", after: "Water beads off" },
-              { label: "Mud Test", before: "Mud stains deeply", after: "Mud wipes off easily" },
-              { label: "Dust Test", before: "Dust embeds in fabric", after: "Dust stays on surface" },
-            ].map((t) => (
-              <div key={t.label} className="bg-neutral rounded-2xl overflow-hidden shadow-sm">
-                <div className="p-3 bg-gray-200 text-xs font-bold text-center text-gray-600 uppercase tracking-wider">
-                  {t.label}
+              { label: "Water Repellency", before: "Soaks & Stains", after: "Instant Beading", icon: <Droplets /> },
+              { label: "Mud Resistance", before: "Deep Absorption", after: "Surface Sliding", icon: <Beaker /> },
+              { label: "Dust Blocking", before: "Fiber Embedding", after: "Easy Shaking", icon: <Zap /> },
+            ].map((t, i) => (
+              <div key={i} className="bg-white rounded-[2rem] overflow-hidden border border-slate-200 group">
+                <div className="p-4 bg-slate-900 text-white flex items-center justify-center gap-2">
+                   {React.cloneElement(t.icon, { size: 16, className: "text-emerald-400" })}
+                   <span className="text-xs font-bold uppercase tracking-widest">{t.label}</span>
                 </div>
-                <div className="grid grid-cols-2">
-                  <div className="p-4 border-r border-gray-200">
-                    <div className="w-full h-28 bg-gray-300 rounded-xl mb-2 flex items-center justify-center text-gray-500 text-3xl">
+                <div className="flex divide-x divide-slate-100">
+                  <div className="flex-1 p-6 space-y-3">
+                    <div className="w-full h-24 bg-slate-50 rounded-xl flex items-center justify-center text-3xl grayscale opacity-50">
                       👟
                     </div>
-                    <p className="text-xs text-center text-gray-500 font-medium">BEFORE</p>
-                    <p className="text-xs text-center text-gray-400 mt-0.5">{t.before}</p>
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Without Shield</p>
+                    <p className="text-xs text-slate-500 font-medium leading-tight">{t.before}</p>
                   </div>
-                  <div className="p-4">
-                    <div className="w-full h-28 bg-green-100 rounded-xl mb-2 flex items-center justify-center text-3xl">
+                  <div className="flex-1 p-6 space-y-3 bg-emerald-50/30">
+                    <div className="w-full h-24 bg-emerald-100/50 rounded-xl flex items-center justify-center text-3xl shadow-inner">
                       ✨
                     </div>
-                    <p className="text-xs text-center text-primary font-bold">AFTER</p>
-                    <p className="text-xs text-center text-gray-400 mt-0.5">{t.after}</p>
+                    <p className="text-[10px] font-black text-emerald-600 uppercase tracking-tighter">EcoShield Core</p>
+                    <p className="text-xs text-slate-900 font-bold leading-tight">{t.after}</p>
                   </div>
                 </div>
               </div>
@@ -118,33 +163,54 @@ export default function TestingPage() {
         </div>
       </section>
 
-      {/* Comparison */}
-      <section className="py-20 bg-neutral">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <span className="text-xs uppercase tracking-widest text-primary font-bold">Comparison</span>
-          <h2 className="font-display font-bold text-3xl text-gray-900 mt-2 mb-10">EcoShield vs Commercial Sprays</h2>
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <table className="w-full text-sm">
+      {/* --- COMPARISON (ECOSHIELD VS OTHERS) --- */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 italic text-slate-900">Why Choose Us?</h2>
+            <p className="text-slate-500">EcoShield vs Conventional Petrochemical Sprays.</p>
+          </div>
+
+          <div className="bg-white rounded-[3rem] border-2 border-slate-100 shadow-xl overflow-hidden">
+            <table className="w-full">
               <thead>
-                <tr className="bg-gray-50">
-                  <th className="py-3 px-5 text-left text-gray-500 font-medium">Feature</th>
-                  <th className="py-3 px-5 text-center font-bold text-primary">🌿 EcoShield</th>
-                  <th className="py-3 px-5 text-center font-bold text-gray-400">Commercial</th>
+                <tr className="bg-slate-900 text-white">
+                  <th className="py-6 px-8 text-left text-sm font-medium opacity-60">Performance Metric</th>
+                  <th className="py-6 px-8 text-center text-emerald-400 font-black italic tracking-tighter">ECOSHIELD</th>
+                  <th className="py-6 px-8 text-center text-slate-400 font-bold">Standard Spray</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-100">
                 {comparisons.map((c, i) => (
-                  <tr key={c.feature} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                    <td className="py-3 px-5 text-gray-700">{c.feature}</td>
-                    <td className="py-3 px-5 text-center text-xl">{c.ecoshield ? "✅" : "❌"}</td>
-                    <td className="py-3 px-5 text-center text-xl">{c.commercial ? "✅" : "❌"}</td>
+                  <tr key={i} className={i % 2 !== 0 ? "bg-slate-50/50" : "bg-white"}>
+                    <td className="py-5 px-8 text-slate-700 font-medium">{c.feature}</td>
+                    <td className="py-5 px-8 text-center">
+                      <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                      </div>
+                    </td>
+                    <td className="py-5 px-8 text-center">
+                      {c.commercial ? (
+                        <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center mx-auto">
+                          <CheckCircle2 className="w-5 h-5 text-slate-400" />
+                        </div>
+                      ) : (
+                        <div className="w-8 h-8 bg-red-50 rounded-full flex items-center justify-center mx-auto">
+                          <XCircle className="w-5 h-5 text-red-300" />
+                        </div>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            <div className="bg-emerald-600 p-6 text-center text-white font-bold text-lg tracking-tight italic">
+               94% Pure Rice Husk Silica — No Competition.
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
