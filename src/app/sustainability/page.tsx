@@ -13,9 +13,19 @@ import {
   Sprout, 
   Ban,
   CheckCircle2,
-  TrendingUp
+  TrendingUp,
+  Beaker, 
+  Flame, 
+  Microscope, 
+  ShieldCheck, 
+  Waves, 
+  ArrowRight,
+  Zap,
+  Atom,
+  Thermometer
 } from "lucide-react";
 
+// --- DATA ARRAYS ---
 const stats = [
   { value: "500+ kg", label: "Rice Husk Utilized", icon: <Sprout className="text-emerald-500" /> },
   { value: "1000+", label: "Shoes Protected", icon: <CheckCircle2 className="text-blue-500" /> },
@@ -62,6 +72,58 @@ const pillars = [
   },
 ];
 
+const scienceProcess = [
+  {
+    num: "01",
+    title: "Waste Collection",
+    detail: "We collect raw rice husks from local mills, preventing them from being burned in open fields.",
+    icon: <Sprout className="w-6 h-6 text-amber-600" />,
+    color: "bg-amber-50",
+  },
+  {
+    num: "02",
+    title: "Pre-Treatment",
+    detail: "Husks are washed with dilute HCl to remove metallic impurities and rinsed to a neutral pH.",
+    icon: <Waves className="w-6 h-6 text-blue-600" />,
+    color: "bg-blue-50",
+  },
+  {
+    num: "03",
+    title: "Controlled Combustion",
+    detail: "Burning at 600–700°C removes organic carbon, leaving behind pure amorphous silica (SiO₂).",
+    icon: <Flame className="w-6 h-6 text-orange-600" />,
+    color: "bg-orange-50",
+  },
+  {
+    num: "04",
+    title: "Silica Extraction",
+    detail: "Ash is treated with NaOH to produce sodium silicate, then acidified to precipitate nanoparticles.",
+    icon: <Beaker className="w-6 h-6 text-purple-600" />,
+    color: "bg-purple-50",
+  },
+  {
+    num: "05",
+    title: "Nano-Formulation",
+    detail: "Particles are modified with hydrophobic agents for water-repellency and dispersed in an eco-carrier.",
+    icon: <Microscope className="w-6 h-6 text-emerald-600" />,
+    color: "bg-emerald-50",
+  },
+  {
+    num: "06",
+    title: "The Shield",
+    detail: "The carrier evaporates, leaving a breathable, transparent nano-silica matrix on shoe fibers.",
+    icon: <ShieldCheck className="w-6 h-6 text-blue-700" />,
+    color: "bg-blue-50",
+  },
+];
+
+const techSpecs = [
+  { label: "Particle Size", value: "50–200 nm", icon: <Atom />, note: "Deep fiber penetration" },
+  { label: "Contact Angle", value: "> 120°", icon: <Waves />, note: "Superhydrophobic threshold" },
+  { label: "Silica Purity", value: "~ 94%", icon: <Zap />, note: "High-grade SiO₂" },
+  { label: "Thermal Tolerance", value: "600°C", icon: <Thermometer />, note: "High heat stability" },
+];
+
 const sdgs = [
   { num: "12", title: "Responsible Consumption", desc: "Sustainable shoe care" },
   { num: "13", title: "Climate Action", desc: "No husk burning" },
@@ -69,29 +131,29 @@ const sdgs = [
   { num: "15", title: "Life on Land", desc: "No toxic runoff" },
 ];
 
-export default function SustainabilityPage() {
+export default function CombinedImpactSciencePage() {
   return (
     <div className="bg-white text-slate-900 overflow-hidden">
       
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-20 pb-32 bg-emerald-950 text-white">
+      <section className="relative pt-24 pb-32 bg-emerald-950 text-white">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] opacity-10" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <span className="px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-[3px]">
-              Our Social Responsibility
+              Nature Meets Nanotechnology
             </span>
             <h1 className="text-5xl lg:text-7xl font-bold mt-8 mb-6 leading-tight">
-              Nature-First <br /> 
-              <span className="text-emerald-400 italic font-medium">Innovation.</span>
+              Molecular Science <br /> 
+              <span className="text-emerald-400 italic font-medium">Earth-First Impact.</span>
             </h1>
             <p className="text-xl text-emerald-100/70 leading-relaxed max-w-2xl mx-auto font-light">
-              We believe in a future where high-performance products don't cost the earth. 
-              EcoShield is our pledge to the planet.
+              We transform agricultural waste into high-performance silica nanoparticles, 
+              creating a future where technology doesn't cost the planet.
             </p>
           </motion.div>
         </div>
@@ -118,13 +180,13 @@ export default function SustainabilityPage() {
         </div>
       </section>
 
-      {/* --- 6 PILLARS --- */}
+      {/* --- SUSTAINABILITY PILLARS --- */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-xl">
-               <h2 className="text-4xl font-bold mb-4">Our Sustainability Pillars</h2>
-               <p className="text-slate-500 italic">The fundamental principles that guide every bottle we produce.</p>
+               <h2 className="text-4xl font-bold mb-4">Sustainability Pillars</h2>
+               <p className="text-slate-500 italic">The fundamental principles behind every bottle of EcoShield.</p>
             </div>
             <div className="hidden md:block h-px flex-1 bg-slate-100 mx-8 mb-4" />
           </div>
@@ -147,34 +209,108 @@ export default function SustainabilityPage() {
         </div>
       </section>
 
-      {/* --- THE RICE HUSK STORY --- */}
-      <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-emerald-900/10 pointer-events-none" />
-        <div className="max-w-6xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-widest text-xs">
-               <TrendingUp size={16} />
-               The Waste Problem
+      {/* --- TRANSFORMATION VISUAL --- */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+            <div className="md:col-span-2 bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 text-center">
+               <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Sprout className="w-8 h-8 text-amber-600" />
+               </div>
+               <h3 className="font-bold text-xl uppercase tracking-tight">Agricultural Waste</h3>
+               <p className="text-sm text-slate-500 mt-2 italic">Zero-value Rice Husk from Local Mills</p>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">Why We Use <br /><span className="text-emerald-500">Rice Husk?</span></h2>
-            <div className="space-y-6 text-slate-400 text-lg leading-relaxed font-light">
-              <p>
-                Pakistan produces over <span className="text-white font-bold text-xl">7 million tonnes</span> of rice annually. 
-                For every tonne, 200kg of husk is generated — and most of it is burned in open fields.
-              </p>
-              <p>
-                This burning releases toxic smoke, CO₂, and contributes to the severe smog in Punjab and Sindh.
-              </p>
-              <div className="p-6 bg-white/5 border border-white/10 rounded-3xl">
-                 <p className="text-emerald-400 font-bold">The EcoShield Solution:</p>
-                 <p className="text-sm mt-2 italic text-slate-300">
-                    "We collect this agricultural waste and extract its pure silica content, turning a major pollutant into a premium, safe product."
-                 </p>
-              </div>
+            <div className="flex justify-center">
+               <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg animate-pulse">
+                  <ArrowRight className="w-6 h-6 rotate-90 md:rotate-0" />
+               </div>
+            </div>
+            <div className="md:col-span-2 bg-slate-900 p-10 rounded-[3rem] shadow-xl text-white text-center">
+               <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Atom className="w-8 h-8 text-emerald-400 animate-spin-slow" />
+               </div>
+               <h3 className="font-bold text-xl uppercase tracking-tight text-emerald-400">Silica Nanoparticles</h3>
+               <p className="text-sm text-emerald-400/50 mt-2 italic">High-Value Protective SiO₂ Matrix</p>
             </div>
           </div>
+        </div>
+      </section>
 
+      {/* --- SCIENCE PROCESS --- */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-20">
+             <h2 className="text-4xl font-bold mb-4 italic uppercase tracking-tighter">The Extraction Journey</h2>
+             <p className="text-slate-500">6 stages of scientific precision to isolate pure hydrophobic silica.</p>
+          </div>
+
+          <div className="relative space-y-10">
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-100 hidden lg:block" />
+            {scienceProcess.map((p, i) => (
+              <motion.div 
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                viewport={{ once: true }}
+                key={i} 
+                className="relative flex flex-col lg:flex-row gap-8 items-start group"
+              >
+                <div className="z-10 w-16 h-16 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-2xl font-black text-slate-200 group-hover:text-emerald-500 transition-colors shrink-0">
+                  {p.num}
+                </div>
+                <div className={`flex-1 p-8 rounded-[2.5rem] border border-slate-100 transition-all duration-300 ${p.color} hover:shadow-lg`}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-white rounded-xl shadow-sm">{p.icon}</div>
+                    <h3 className="text-xl font-bold text-slate-800">{p.title}</h3>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed text-sm">{p.detail}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- TECHNICAL SPECS --- */}
+      <section className="py-24 bg-slate-950 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-1">
+               <h2 className="text-3xl font-bold mb-4">Technical <br/>Specs</h2>
+               <p className="text-slate-500 text-sm italic">The chemical and physical properties that define EcoShield's performance.</p>
+            </div>
+            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+               {techSpecs.map((p, i) => (
+                  <div key={i} className="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-emerald-500/10 transition-colors">
+                     <div className="text-emerald-500 mb-4">{React.cloneElement(p.icon, { size: 24 })}</div>
+                     <p className="text-[10px] uppercase font-bold text-slate-500 tracking-widest">{p.label}</p>
+                     <p className="text-3xl font-black mt-1 mb-2 tracking-tighter">{p.value}</p>
+                     <p className="text-xs text-emerald-400/70 italic">{p.note}</p>
+                  </div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- THE WASTE PROBLEM (CONTEXT) --- */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 text-emerald-600 font-bold uppercase tracking-widest text-xs">
+               <TrendingUp size={16} />
+               The Local Context
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight tracking-tighter text-slate-900">Why Use <br /><span className="text-emerald-500 italic">Rice Husk?</span></h2>
+            <div className="space-y-6 text-slate-500 text-lg leading-relaxed font-light">
+              <p>
+                Pakistan produces over <span className="text-slate-900 font-bold text-xl underline decoration-emerald-400">7 million tonnes</span> of rice annually. 
+                For every tonne, 200kg of husk is generated — most of which is burned in open fields.
+              </p>
+              <p>
+                This releases toxic smoke and CO₂, contributing to the severe smog in Punjab. We solve this by extracting high-value silica from this very waste.
+              </p>
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {[
               { label: "Rice in Pakistan", val: "7M+ T/Y" },
@@ -182,25 +318,19 @@ export default function SustainabilityPage() {
               { label: "Burning Rate", val: "60%" },
               { label: "Silica Content", val: "20%" },
             ].map((item, i) => (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                key={i} 
-                className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] text-center hover:bg-emerald-500/10 transition-colors"
-              >
-                <p className="text-3xl font-black text-emerald-400 mb-1 tracking-tight">{item.val}</p>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-tight">{item.label}</p>
-              </motion.div>
+              <div key={i} className="bg-slate-50 border border-slate-100 p-8 rounded-[2.5rem] text-center hover:border-emerald-200 transition-colors">
+                <p className="text-3xl font-black text-slate-900 mb-1 tracking-tight">{item.val}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">{item.label}</p>
+              </div>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* --- SDG ALIGNMENT --- */}
-      <section className="py-24 bg-[rgb(246,250,247)]">
+      <section className="py-24 bg-[rgb(246,250,247)] rounded-[3rem] lg:rounded-[5rem] mx-4 mb-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">UN SDG Alignment</h2>
+          <h2 className="text-3xl font-bold mb-4 italic uppercase tracking-tighter">Global Alignment</h2>
           <p className="text-slate-500 mb-16">Our contribution to the United Nations Sustainable Development Goals.</p>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -208,16 +338,16 @@ export default function SustainabilityPage() {
               <motion.div 
                 whileHover={{ y: -10 }}
                 key={i} 
-                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative group"
+                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative group overflow-hidden"
               >
-                <div className="absolute top-4 right-6 text-4xl font-black text-emerald-600/10 group-hover:text-emerald-600/20 transition-colors">
+                <div className="absolute -top-2 -right-2 text-6xl font-black text-emerald-600/5 group-hover:text-emerald-600/10 transition-colors">
                    {s.num}
                 </div>
-                <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mb-6 shadow-lg shadow-emerald-200">
+                <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mb-6 shadow-lg shadow-emerald-200 relative z-10">
                   {s.num}
                 </div>
-                <h4 className="text-sm font-black uppercase text-slate-800 mb-2">{s.title}</h4>
-                <p className="text-xs text-slate-500 font-medium">{s.desc}</p>
+                <h4 className="text-sm font-black uppercase text-slate-800 mb-2 text-left">{s.title}</h4>
+                <p className="text-xs text-slate-500 font-medium text-left">{s.desc}</p>
               </motion.div>
             ))}
           </div>

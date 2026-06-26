@@ -1,28 +1,29 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Menu, X, ShoppingCart, Globe, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Menu, X, ShoppingCart, Globe, ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import PreOrderModal from "@/components/home/PreOrderModal"; // ← path apni project structure k hisab say adjust karo
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Science", href: "/science" },
-  { label: "Testing", href: "/testing" },
-  { label: "Shop", href: "/shop" },
+  { label: "Home",           href: "/" },
+  { label: "About",          href: "/about" },
+  { label: "Features",       href: "/Feature" },
+  { label: "Testing",        href: "/testing" },
+  { label: "Shop",           href: "/shop" },
   { label: "Sustainability", href: "/sustainability" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
+  { label: "Team",           href: "/team" },
+  { label: "Contact",        href: "/contact" },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]         = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false); // ← NEW
   const pathname = usePathname();
 
-  // Scroll effect for glassmorphism
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -31,16 +32,19 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── PRE-ORDER MODAL ── */}
+      <PreOrderModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
       <nav
         className={`sticky top-0 z-[100] transition-all duration-300 ${
-          scrolled 
-          ? "bg-white/80 backdrop-blur-lg shadow-md py-2" 
-          : "bg-white py-4"
+          scrolled
+            ? "bg-white/80 backdrop-blur-lg shadow-md py-2"
+            : "bg-white py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
-          {/* Logo Section */}
+
+          {/* Logo */}
           <Link href="/" className="relative group transition-transform hover:scale-105 active:scale-95">
             <Image
               src="/images/logo1.png"
@@ -52,7 +56,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
             <ul className="flex items-center gap-2 mr-4">
               {links.map((l) => (
@@ -60,7 +64,9 @@ export default function Navbar() {
                   <Link
                     href={l.href}
                     className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-full hover:bg-emerald-50 ${
-                      pathname === l.href ? "text-emerald-600 bg-emerald-50" : "text-gray-600 hover:text-emerald-600"
+                      pathname === l.href
+                        ? "text-emerald-600 bg-emerald-50"
+                        : "text-gray-600 hover:text-emerald-600"
                     }`}
                   >
                     {l.label}
@@ -75,22 +81,26 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* Premium CTA */}
-            <Link
-              href="/shop"
+            {/* ── CTA BUTTON → opens modal ── */}
+            <button
+              onClick={() => setModalOpen(true)}
               className="group relative flex items-center gap-2 bg-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-700 hover:shadow-emerald-300 transition-all active:scale-95 overflow-hidden"
             >
               <span className="relative z-10">Pre-Order Now</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+              {/* Shimmer sweep */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Actions */}
           <div className="flex lg:hidden items-center gap-4">
-             <Link href="/shop" className="p-2 text-emerald-600 bg-emerald-50 rounded-full">
-                <ShoppingCart className="w-5 h-5" />
-             </Link>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="p-2 text-emerald-600 bg-emerald-50 rounded-full"
+            >
+              <ShoppingCart className="w-5 h-5" />
+            </button>
             <button
               onClick={() => setOpen(!open)}
               className="p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
@@ -100,7 +110,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Slide Menu */}
         <AnimatePresence>
           {open && (
             <>
@@ -139,9 +149,9 @@ export default function Navbar() {
                         href={l.href}
                         onClick={() => setOpen(false)}
                         className={`block py-4 px-6 rounded-2xl text-lg font-bold transition-all ${
-                          pathname === l.href 
-                          ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200" 
-                          : "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                          pathname === l.href
+                            ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200"
+                            : "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
                         }`}
                       >
                         {l.label}
@@ -151,23 +161,22 @@ export default function Navbar() {
                 </div>
 
                 <div className="mt-auto pt-6 border-t border-gray-100">
-                  <Link
-                    href="/shop"
-                    onClick={() => setOpen(false)}
+                  {/* ── Mobile Pre-Order Button → opens modal ── */}
+                  <button
+                    onClick={() => { setOpen(false); setModalOpen(true); }}
                     className="flex items-center justify-center gap-2 w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-emerald-200"
                   >
                     <ShoppingCart className="w-5 h-5" /> Pre-Order Now
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             </>
           )}
         </AnimatePresence>
       </nav>
-      
-      {/* Scroll Lock when mobile menu open */}
+
       <style jsx global>{`
-        body { overflow: ${open ? 'hidden' : 'auto'}; }
+        body { overflow: ${open ? "hidden" : "auto"}; }
       `}</style>
     </>
   );
