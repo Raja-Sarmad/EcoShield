@@ -82,7 +82,7 @@ export default function ShopPage() {
               className="relative z-10"
             >
               <Image 
-                src="/images/bottle2.jpeg" 
+                src="/images/bottle3.png" 
                 alt="EcoShield Bottle" 
                 width={400} 
                 height={500} 
