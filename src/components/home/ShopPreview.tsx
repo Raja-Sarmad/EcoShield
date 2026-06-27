@@ -1,10 +1,14 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, CheckCircle2, Sparkles, Zap, Package, ArrowRight } from "lucide-react";
+import { ShoppingBag, CheckCircle2, Package, ArrowRight } from "lucide-react";
+import PreOrderModal from "@/components/home/PreOrderModal";
 
 export default function ShopPreview() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const features = [
     "Nano-Armor Technology",
     "Breathable Protection",
@@ -20,6 +24,9 @@ export default function ShopPreview() {
   return (
     <section className="relative py-24 bg-[#FAF9F6] overflow-hidden">
       
+      {/* Pre-Order Modal */}
+      <PreOrderModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
       {/* Background Decor */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-100/40 rounded-full blur-[120px] -z-10" />
 
@@ -52,7 +59,6 @@ export default function ShopPreview() {
             whileInView={{ opacity: 1, y: 0 }}
             className="lg:col-span-7 bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-slate-200 border border-slate-50 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden"
           >
-            {/* Animated Glow behind bottle */}
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-48 h-48 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 w-full max-w-[220px] group">
@@ -90,8 +96,8 @@ export default function ShopPreview() {
                 </div>
                 <div className="h-10 w-[1px] bg-slate-100" />
                 <div className="flex flex-col gap-1">
-                   <span className="text-[9px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-black uppercase tracking-tighter w-fit">In Stock</span>
-                   <span className="text-[10px] text-slate-400">Free delivery on 2+ bottles</span>
+                  <span className="text-[9px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-black uppercase tracking-tighter w-fit">In Stock</span>
+                  <span className="text-[10px] text-slate-400">Free delivery on 2+ bottles</span>
                 </div>
               </div>
             </div>
@@ -104,15 +110,17 @@ export default function ShopPreview() {
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="bg-emerald-600 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-emerald-200 group"
+              className="bg-emerald-600 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-emerald-200"
             >
               <h4 className="text-2xl font-black mb-4 leading-tight">Ready to armor your <br />collection?</h4>
-              <Link 
-                href="/shop" 
-                className="flex items-center justify-center gap-3 w-full bg-white text-emerald-700 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-emerald-50 transition-all shadow-xl active:scale-95 group"
+              
+              {/* Button linked to Modal */}
+              <button
+                onClick={() => setModalOpen(true)}
+                className="group flex items-center justify-center gap-3 w-full bg-white text-emerald-700 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-emerald-50 transition-all shadow-xl active:scale-95"
               >
                 Pre-Order Now <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
+              </button>
             </motion.div>
 
             {/* Bundle Offers */}
@@ -130,8 +138,9 @@ export default function ShopPreview() {
                 {bundles.map((b) => (
                   <div 
                     key={b.name} 
-                    className={`relative p-4 rounded-2xl border transition-all cursor-default ${
-                      b.popular ? 'border-emerald-500 bg-emerald-50/30' : 'border-slate-100 bg-slate-50/50 hover:border-[#9c6a55]/30'
+                    onClick={() => setModalOpen(true)} // Bundles also trigger the form
+                    className={`relative p-4 rounded-2xl border transition-all cursor-pointer active:scale-[0.98] ${
+                      b.popular ? 'border-emerald-500 bg-emerald-50/30' : 'border-slate-100 bg-slate-50/50 hover:border-emerald-200'
                     }`}
                   >
                     {b.popular && (

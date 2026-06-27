@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X, CheckCircle2, ArrowRight, ShoppingCart,
@@ -116,7 +117,9 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
       ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
       : "border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"}`;
 
-  return (
+  if (typeof window === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -127,7 +130,8 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200]"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
+            style={{ zIndex: 9998 }}
           />
 
           {/* Modal */}
@@ -137,7 +141,8 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ type: "spring", damping: 26, stiffness: 280 }}
-            className="fixed inset-0 z-[210] flex items-center justify-center p-4"
+            className="fixed inset-0 flex items-center justify-center p-4"
+            style={{ zIndex: 9999 }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl shadow-emerald-100 overflow-hidden max-h-[92vh] flex flex-col">
@@ -479,6 +484,7 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
