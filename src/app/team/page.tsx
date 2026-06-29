@@ -1,71 +1,63 @@
 "use client";
 import React from "react";
+import Image from "next/image"; // Image import ki
 import { motion } from "framer-motion";
 import { 
-  Laptop, 
-  Beaker, 
-  Video, 
-  ClipboardCheck, 
-  BarChart3, 
-  Wallet, 
-  Palette, 
-  Calendar,
   GraduationCap,
   Clock,
   Lightbulb,
-  // Brand icons ki jagah ye generic icons use kar rahe hain
   Mail,
   ExternalLink
 } from "lucide-react";
 
 const team = [
   { 
-    name: "Ayesha Khan", 
-    role: "Web & Digital Marketing", 
-    icon: <Laptop className="w-6 h-6" />, 
-    bio: "Handles all digital presence, website design, and social media strategy for EcoShield." 
+    name: "Neha Arif", 
+    role: "Leader & Branding & Packaging Designer", 
+    image: "/images/Neha.jpeg", 
+    bio: "Branding & Packaging Designer: Logo, product name, bottle label, packaging design, brand identity." 
   },
   { 
-    name: "Mariam Ali", 
-    role: "Research & Development", 
-    icon: <Beaker className="w-6 h-6" />, 
-    bio: "Leads the silica extraction research and formulation development process." 
+    name: "Rimsha Masood", 
+    role: "Web & Digital Marketing Manager", 
+    image: "/images/Rimsha.png", 
+    bio: "Website, Instagram, Facebook, LinkedIn, content calendar, and digital outreach." 
   },
   { 
-    name: "Hassan Raza", 
-    role: "Media & Presentation", 
-    icon: <Video className="w-6 h-6" />, 
-    bio: "Creates visual content, demo videos, and presentation materials for the project." 
+    name: "Ali Hasnain", 
+    role: "Research & Product Development Lead", 
+    image: "/images/Ali.jpeg", 
+    bio: "Silica extraction, formulation, chemical methods, and sustainable product development." 
   },
   { 
-    name: "Zainab Malik", 
-    role: "Quality Assurance Lead", 
-    icon: <ClipboardCheck className="w-6 h-6" />, 
-    bio: "Designs and executes all product testing protocols and documents results." 
+    name: "Uzair", 
+    role: "Media & Presentation Designer", 
+    image: "/images/Uzair.jpeg", 
+    bio: "Animations, promotional videos, demo video, and high-impact presentation design." 
   },
   { 
-    name: "Usman Javed", 
-    role: "Data Analyst", 
-    icon: <BarChart3 className="w-6 h-6" />, 
-    bio: "Assists in test execution and handles statistical analysis of all test data." 
+    name: "Kashif Mehmood", 
+    role: "Testing & Quality Assurance Lead", 
+    image: "/images/Kashif.jpeg", 
+    bio: "Water, dust, stain, and durability testing with detailed technical reports." 
   },
   { 
-    name: "Hira Fatima", 
-    role: "Finance & Operations", 
-    icon: <Wallet className="w-6 h-6" />, 
-    bio: "Manages costing, budgeting, pre-order operations, and financial projections." 
+    name: "Humna", 
+    role: "Testing Assistant & Data Analyst", 
+    image: "/images/Humna.png", 
+    bio: "Assisting in testing, data collection, and creating analytical charts/tables." 
   },
   { 
-    name: "Bilal Ahmed", 
-    role: "Branding & Packaging", 
-    icon: <Palette className="w-6 h-6" />, 
-    bio: "Designed the EcoShield logo, bottle label, and all brand identity materials." 
+    name: "Ghulam Murtaza", 
+    role: "Finance & Operations Manager", 
+    image: "/images/Ghulam.jpeg", 
+    bio: "Budget management, costing, pricing strategies, and inventory planning." 
   },
   { 
-    name: "Sara Nadeem", 
-    role: "Project Manager", 
-    icon: <Calendar className="w-6 h-6" />, 
-    bio: "Oversees timelines, coordinates team deliverables, and maintains documentation." 
+    name: "Binish", 
+    role: "Project Manager & Documentation Lead", 
+    image: "/images/Binish.jpeg", 
+    bio: "Team coordination, report writing, meeting records, and final project submission." 
   },
 ];
 
@@ -111,22 +103,30 @@ export default function TeamPage() {
                 whileHover={{ y: -10 }}
                 className="relative bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all duration-300 group text-center"
               >
-                <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center text-emerald-600 mx-auto mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                  {m.icon}
+                {/* Image Container instead of Icon */}
+                <div className="relative w-28 h-28 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-emerald-100 rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white shadow-md">
+                    <Image 
+                        src={m.image} 
+                        alt={m.name} 
+                        fill 
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
                 </div>
                 
                 <h3 className="text-xl font-bold text-slate-900 mb-1">{m.name}</h3>
-                <p className="text-[11px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 inline-block px-3 py-1 rounded-full mb-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 inline-block px-3 py-1 rounded-full mb-4">
                   {m.role}
                 </p>
-                <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                <p className="text-sm text-slate-500 leading-relaxed mb-6 min-h-[60px]">
                   {m.bio}
                 </p>
 
-                {/* Fixed Icons here: Mail and ExternalLink */}
-                <div className="flex justify-center gap-4 text-slate-300 group-hover:text-slate-400">
-                   <Mail size={16} className="hover:text-emerald-600 cursor-pointer" />
-                   <ExternalLink size={16} className="hover:text-emerald-600 cursor-pointer" />
+                <div className="flex justify-center gap-4 text-slate-300 group-hover:text-slate-400 border-t border-slate-50 pt-6">
+                   <Mail size={16} className="hover:text-emerald-600 cursor-pointer transition-colors" />
+                   <ExternalLink size={16} className="hover:text-emerald-600 cursor-pointer transition-colors" />
                 </div>
               </motion.div>
             ))}

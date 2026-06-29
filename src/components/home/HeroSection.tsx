@@ -23,10 +23,10 @@ export default function HeroSection() {
             <motion.div 
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-emerald-100/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-200 mt-10"
+              className="inline-flex items-center gap-2 bg-emerald-100/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-200"
             >
               <Leaf className="w-4 h-4 text-emerald-600" />
-              <span className="text-emerald-800 text-xs font-bold uppercase tracking-widest ">
+              <span className="text-emerald-800 text-xs font-bold uppercase tracking-widest">
                 The Future of Shoe Care
               </span>
             </motion.div>
@@ -47,7 +47,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-xl md:text-2xl font-bold text-amber-700/80 italic font-serif"
+                className="text-xl md:text-2xl font-bold text-amber-700/80 italic font-serif mt-8"
               >
                 World's First Rice-Husk Based Protection
               </motion.p>
@@ -58,7 +58,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-gray-600 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className="text-gray-600 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-20"
             >
               EcoShield creates a hyper-hydrophobic barrier that repels water, mud, and stains using 100% biodegradable ingredients. Protect your investment, protect the earth.
             </motion.p>

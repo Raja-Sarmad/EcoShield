@@ -5,25 +5,25 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Plus, Users, Link2 } from "lucide-react";
 
 const team = [
-  { name: "Ayesha Khan", role: "Web & Digital Marketing" },
-  { name: "Mariam Ali", role: "Research & Development" },
-  { name: "Hassan Raza", role: "Media & Presentation" },
-  { name: "Zainab Malik", role: "Quality Assurance Lead" },
-  { name: "Usman Javed", role: "Data Analyst" },
-  { name: "Hira Fatima", role: "Finance & Operations" },
-  { name: "Bilal Ahmed", role: "Branding & Packaging" },
-  { name: "Sara Nadeem", role: "Project Manager" },
+  { name: "Rimsha Masood", role: "Web & Digital Marketing Manager", image: "/images/Rimsha.png" },
+  { name: "Neha Arif", role: "Research & Product Development Lead", image: "/images/Neha.jpeg" },
+  { name: "Ali Hussain", role: "Research & Product Development Lead", image: "/images/Ali.jpeg" },
+  { name: "Uzair", role: "Media & Presentation Designer", image: "/images/Uzair.jpeg" },
+  { name: "Kashif Mehmood", role: "Testing & Quality Assurance Lead", image: "/images/Kashif.jpeg" },
+  { name: "Humna", role: "Testing Assistant & Data Analyst", image: "/images/Humna.png" },
+  { name: "Binish", role: "Project Manager & Documentation Lead", image: "/images/Binish.jpeg" },
+  { name: "Ghulam Murtaza", role: "Finance & Operations Manager", image: "/images/Ghulam.jpeg" },
 ];
 
-// Marquee ke liye hum array ko triple kar dete hain taake gap na aaye
+// Marquee ke liye array triple
 const extendedTeam = [...team, ...team, ...team];
 
-function MemberCard({ name, role }: { name: string; role: string }) {
+function MemberCard({ name, role, image }: { name: string; role: string; image: string }) {
   return (
     <div className="group relative w-[240px] md:w-[280px] flex-shrink-0 px-3">
       <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-white border border-slate-100 group-hover:border-emerald-200 transition-all duration-500 shadow-sm group-hover:shadow-2xl group-hover:shadow-emerald-100 group-hover:-translate-y-2">
         <Image
-          src="/images/girl.jpeg"
+          src={image} // Ab ye dynamic image show karega
           alt={name}
           fill
           className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
@@ -87,24 +87,28 @@ export default function TeamSlider() {
         <motion.div 
           className="flex whitespace-nowrap"
           animate={{
-            x: [0, -2000], // Loop length (Adjust based on team size)
+            x: [0, -2000], 
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 35, // Slider Speed (Higher = Slower)
+              duration: 35,
               ease: "linear",
             },
           }}
-          // Pause on Hover
           whileHover={{ transition: { duration: 100 } }}
         >
           {extendedTeam.map((m, index) => (
-            <MemberCard key={index} name={m.name} role={m.role} />
+            <MemberCard 
+              key={index} 
+              name={m.name} 
+              role={m.role} 
+              image={m.image} // Image pass ho rahi hai yahan
+            />
           ))}
 
-          {/* Special "View All" Card inside the slider */}
+          {/* Special "View All" Card */}
           <div className="px-3 flex-shrink-0">
             <Link href="/team" className="block group">
               <div className="w-[240px] md:w-[280px] aspect-[4/5] rounded-[2.5rem] bg-emerald-600 flex flex-col items-center justify-center p-8 text-center transition-all duration-500 hover:scale-105 shadow-xl shadow-emerald-200 relative overflow-hidden">
@@ -121,7 +125,7 @@ export default function TeamSlider() {
           </div>
         </motion.div>
 
-        {/* Edge Fades (Premium Touch) */}
+        {/* Edge Fades */}
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FAF9F6] to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#FAF9F6] to-transparent z-10 pointer-events-none" />
       </div>
