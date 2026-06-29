@@ -7,16 +7,16 @@ import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-14 pb-8 relative overflow-hidden border-t border-slate-900">
+    <footer className="bg-slate-950 text-slate-400 pt-10 sm:pt-14 pb-8 relative overflow-hidden border-t border-slate-900">
       <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -mr-36 -mt-36 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── TOP GRID ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
 
           {/* BRAND — full width on mobile */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-5">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-5">
             <Link href="/" className="inline-flex items-center gap-2 group">
               <div className="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-900/20 group-hover:rotate-12 transition-transform duration-300">
                 <FaLeaf size={17} />
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
 
           {/* NEWSLETTER — full width on mobile */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-4">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-4">
             <h4 className="text-white font-bold uppercase tracking-[2px] text-[10px]">Stay Protected</h4>
             <p className="text-xs text-slate-500 italic leading-relaxed">
               Join our community for the latest in eco-tech and shoe care innovations.
@@ -106,7 +106,7 @@ export default function Footer() {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="mt-14 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <div className="mt-10 sm:mt-14 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="text-[10px] font-bold tracking-[2px] uppercase opacity-50">
             © 2024 <span className="text-white">EcoShield Collective</span>. Built for Mega Project.
           </p>
