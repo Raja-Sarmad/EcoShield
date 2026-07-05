@@ -87,11 +87,11 @@ export default function FeaturesSection() {
     <div className="bg-white text-slate-900 overflow-hidden">
 
       {/* --- HERO --- */}
-      <section className="relative pt-20 pb-32 bg-slate-950 text-white">
+      <section className="relative pt-14 pb-24 sm:pt-20 sm:pb-32 bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/30 via-transparent to-transparent" />
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,12 +100,12 @@ export default function FeaturesSection() {
             <span className="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest">
               Product Features
             </span>
-            <h1 className="text-5xl lg:text-7xl font-bold mt-6 mb-8 tracking-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mt-6 mb-6 sm:mb-8 tracking-tight">
               Built to <span className="text-emerald-500">Protect.</span>
               <br />
               Designed to Last.
             </h1>
-            <p className="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
               EcoShield combines advanced nano-coating science with everyday
               usability — six powerful features engineered for real protection.
             </p>
@@ -114,9 +114,9 @@ export default function FeaturesSection() {
       </section>
 
       {/* --- FEATURE CARDS --- */}
-      <section className="relative -mt-16 pb-24 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-6 pt-8">
-          <div className="relative space-y-6 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-6">
+      <section className="relative -mt-16 pb-16 sm:pb-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {features.map((f, i) => (
               <motion.div
                 key={i}
@@ -124,12 +124,12 @@ export default function FeaturesSection() {
                 initial={{ opacity: 0, y: 24 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group flex flex-col gap-4 p-8 rounded-[2.5rem] border transition-all duration-300 hover:shadow-xl ${f.color}`}
+                className={`group flex flex-col gap-4 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border transition-all duration-300 hover:shadow-xl ${f.color}`}
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm ${f.iconBg}`}>
                   {f.icon}
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">{f.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-800">{f.title}</h3>
                 <p className="text-slate-600 leading-relaxed text-sm">{f.detail}</p>
               </motion.div>
             ))}
@@ -138,25 +138,25 @@ export default function FeaturesSection() {
       </section>
 
       {/* --- DARK STATS BANNER --- */}
-      <section className="py-24 bg-emerald-950 text-white rounded-[3rem] lg:rounded-[5rem] mx-4 mb-12 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 italic">
+      <section className="py-16 sm:py-24 bg-emerald-950 text-white rounded-[2rem] sm:rounded-[3rem] lg:rounded-[5rem] mx-3 sm:mx-4 mb-8 sm:mb-12 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 italic px-2">
               Science You Can Feel. Results You Can See.
             </h2>
-            <p className="text-emerald-200/60 max-w-2xl mx-auto">
+            <p className="text-emerald-200/60 max-w-2xl mx-auto text-sm sm:text-base">
               Every EcoShield feature is backed by real nano-chemistry — not
               just marketing.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
             {stats.map((item, i) => (
               <div key={i} className="text-center space-y-4">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                   {React.cloneElement(item.icon, { size: 28 })}
                 </div>
-                <h4 className="text-xl font-bold">{item.title}</h4>
+                <h4 className="text-lg sm:text-xl font-bold">{item.title}</h4>
                 <p className="text-sm text-emerald-100/60 leading-relaxed">
                   {item.desc}
                 </p>
