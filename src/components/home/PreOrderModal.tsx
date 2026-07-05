@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import emailjs from "@emailjs/browser"; // EmailJS Import
+import emailjs from "@emailjs/browser"; 
 import {
   X, CheckCircle2, ArrowRight, ShoppingCart,
   User, Phone, Mail, MapPin, Home, Package, Leaf
@@ -101,15 +101,14 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
     setStep((s) => (s + 1) as Step);
   };
 
-  // --- SUBMIT FUNCTION WITH EMAILJS ---
   const submit = async () => {
     setLoading(true);
 
-    const SERVICE_ID = "service_qj4641n"; 
-    const TEMPLATE_ID = "template_spqn2cf"; // Using your existing template
-    const PUBLIC_KEY = "f7zFTJFOLxeIwQX3f"; 
+    // Pulling IDs from .env file
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_PREORDER; 
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID; 
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY; 
 
-    // Combine all order details into the "message" field so you don't have to change the template
     const orderDetails = `
       NEW PRE-ORDER DETAILS:
       ----------------------
@@ -129,7 +128,7 @@ export default function PreOrderModal({ isOpen, onClose }: Props) {
     };
 
     try {
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      await emailjs.send(SERVICE_ID!, TEMPLATE_ID!, templateParams, PUBLIC_KEY!);
       setSubmitted(true);
     } catch (error) {
       console.error("Order Failed:", error);

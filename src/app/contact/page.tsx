@@ -25,9 +25,10 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true);
 
-    const SERVICE_ID = "service_ctvh0dx"; 
-    const TEMPLATE_ID = "template_spqn2cf"; 
-    const PUBLIC_KEY = "f7zFTJFOLxeIwQX3f"; 
+    // IDs are now being pulled from your .env.local file
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID; 
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID; 
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY; 
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
       .then((result) => {
@@ -36,7 +37,6 @@ export default function ContactPage() {
           setLoading(false);
       }, (error) => {
           console.error("Error:", error.text);
-          // Alert changed to English
           alert("Failed to send message. Please verify your EmailJS setup or internet connection.");
           setLoading(false);
       });
