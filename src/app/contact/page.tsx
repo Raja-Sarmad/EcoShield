@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { 
   Mail, 
   MessageSquare, 
@@ -13,10 +14,33 @@ import {
 } from "lucide-react";
 
 export default function ContactPage() {
+  const formRef = useRef();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [usefulness, setUsefulness] = useState("");
 
   const options = ["Very Useful", "Somewhat", "Not Sure"];
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const SERVICE_ID = "service_ctvh0dx"; 
+    const TEMPLATE_ID = "template_spqn2cf"; 
+    const PUBLIC_KEY = "f7zFTJFOLxeIwQX3f"; 
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      .then((result) => {
+          console.log("Success:", result.text);
+          setSubmitted(true);
+          setLoading(false);
+      }, (error) => {
+          console.error("Error:", error.text);
+          // Alert changed to English
+          alert("Failed to send message. Please verify your EmailJS setup or internet connection.");
+          setLoading(false);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-[rgb(246,250,247)] py-10 sm:py-16 lg:py-24">
@@ -96,8 +120,7 @@ export default function ContactPage() {
                     className="py-10 sm:py-12 text-center space-y-5 sm:space-y-6"
                   >
                     <div className="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                       <CheckCircle2 size={40} className="text-emerald-600 sm:hidden" />
-                       <CheckCircle2 size={48} className="text-emerald-600 hidden sm:block" />
+                       <CheckCircle2 size={48} className="text-emerald-600" />
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Message Received!</h3>
                     <p className="text-slate-500 max-w-sm mx-auto text-sm sm:text-base">
@@ -112,72 +135,84 @@ export default function ContactPage() {
                     </button>
                   </motion.div>
                 ) : (
-                  <motion.div key="form" className="space-y-5 sm:space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <form ref={formRef} onSubmit={sendEmail}>
+                    <motion.div key="form" className="space-y-5 sm:space-y-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="space-y-2">
+                          <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
+                          <input 
+                            name="from_name"
+                            type="text"
+                            required
+                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all" 
+                            placeholder="John Doe" 
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
+                          <input 
+                            name="from_email"
+                            type="email"
+                            required
+                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all" 
+                            placeholder="john@example.com" 
+                          />
+                        </div>
+                      </div>
+
                       <div className="space-y-2">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
-                        <input 
-                          type="text"
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all" 
-                          placeholder="John Doe" 
+                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Message</label>
+                        <textarea 
+                          name="message"
+                          required
+                          rows={4} 
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all resize-none" 
+                          placeholder="Tell us what's on your mind..." 
                         />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
-                        <input 
-                          type="email"
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all" 
-                          placeholder="john@example.com" 
-                        />
+
+                      <input type="hidden" name="usefulness" value={usefulness} />
+
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-2">
+                          <ThumbsUp size={12} />
+                          Is EcoShield useful to you?
+                        </label>
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          {options.map(o => (
+                            <button 
+                              key={o} 
+                              type="button"
+                              onClick={() => setUsefulness(o)}
+                              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all duration-300 border ${
+                                usefulness === o 
+                                  ? "bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-600/20" 
+                                  : "bg-white border-slate-200 text-slate-500 hover:border-emerald-200 hover:bg-emerald-50/50"
+                              }`}
+                            >
+                              {o}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Message</label>
-                      <textarea 
-                        rows={4} 
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all resize-none" 
-                        placeholder="Tell us what's on your mind..." 
-                      />
-                    </div>
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-slate-950 text-white py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-3 mt-2 sm:mt-4 disabled:opacity-50"
+                      >
+                        {loading ? "Sending Message..." : "Send Message"}
+                        <Send size={18} className="opacity-50" />
+                      </motion.button>
 
-                    <div className="space-y-3">
-                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-2">
-                        <ThumbsUp size={12} />
-                        Is EcoShield useful to you?
-                      </label>
-                      <div className="flex flex-wrap gap-2 sm:gap-3">
-                        {options.map(o => (
-                          <button 
-                            key={o} 
-                            onClick={() => setUsefulness(o)}
-                            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all duration-300 border ${
-                              usefulness === o 
-                                ? "bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-600/20" 
-                                : "bg-white border-slate-200 text-slate-500 hover:border-emerald-200 hover:bg-emerald-50/50"
-                            }`}
-                          >
-                            {o}
-                          </button>
-                        ))}
+                      <div className="pt-3 sm:pt-4 flex items-center justify-center gap-2 text-slate-400">
+                         <Sparkles size={14} className="text-emerald-500" />
+                         <p className="text-[10px] font-bold uppercase tracking-[2px]">Powered by Rice Husk Silica Tech</p>
                       </div>
-                    </div>
-
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setSubmitted(true)}
-                      className="w-full bg-slate-950 text-white py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-3 mt-2 sm:mt-4"
-                    >
-                      Send Message
-                      <Send size={18} className="opacity-50" />
-                    </motion.button>
-
-                    <div className="pt-3 sm:pt-4 flex items-center justify-center gap-2 text-slate-400">
-                       <Sparkles size={14} className="text-emerald-500" />
-                       <p className="text-[10px] font-bold uppercase tracking-[2px]">Powered by Rice Husk Silica Tech</p>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </form>
                 )}
               </AnimatePresence>
             </div>

@@ -12,7 +12,7 @@ const team = [
   { name: "Uzair",          role: "Media & Presentation Designer",          image: "/images/Uzair.jpeg",  email: "uzair@ecoshield.pk",   bio: "Crafting the visual identity of EcoShield through media." },
   { name: "Kashif Mehmood", role: "Testing & Quality Assurance Lead",       image: "/images/Kashif.jpeg", email: "kashif@ecoshield.pk",  bio: "Ensuring every batch meets the highest quality benchmarks." },
   { name: "Humna",          role: "Testing Assistant & Data Analyst",       image: "/images/Humna.png",   email: "humna@ecoshield.pk",   bio: "Supporting QA processes and translating test data into insights." },
-  { name: "Binish",         role: "Project Manager & Documentation Lead",   image: "/images/Binish.jpeg", email: "binish@ecoshield.pk",  bio: "Keeping the project on track with meticulous planning." },
+  { name: "Binish",         role: "Project Manager & Documentation Lead",   image: "/images/binish.jpeg", email: "binish@ecoshield.pk",  bio: "Keeping the project on track with meticulous planning." },
   { name: "Ghulam Murtaza", role: "Finance & Operations Manager",           image: "/images/Ghulam.jpeg", email: "ghulam@ecoshield.pk",  bio: "Managing financial planning and operational efficiency." },
 ];
 
