@@ -12,7 +12,7 @@ const team = [
   { name: "Kashif Mehmood", role: "Testing & Quality Assurance Lead",        image: "/images/Kashif.jpeg", email: "kashif@ecoshield.pk",  bio: "QA Lead." },
   { name: "Humna",          role: "Testing Assistant & Data Analyst",        image: "/images/Humna.png",   email: "humna@ecoshield.pk",   bio: "Data Analyst." },
   { name: "Ghulam Murtaza", role: "Finance & Operations Manager",            image: "/images/Ghulam.jpeg", email: "ghulam@ecoshield.pk",  bio: "Finance Manager." },
-  { name: "Binish",         role: "Project Manager & Documentation Lead",    image: "/images/Binish.jpeg", email: "binish@ecoshield.pk",  bio: "Project Manager." },
+  { name: "Binish",         role: "Project Manager & Documentation Lead",    image: "/images/binish.jpeg", email: "binish@ecoshield.pk",  bio: "Project Manager." },
 ];
 
 type Member = typeof team[0];
