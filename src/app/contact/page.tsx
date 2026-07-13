@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 export default function ContactPage() {
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [usefulness, setUsefulness] = useState("");
