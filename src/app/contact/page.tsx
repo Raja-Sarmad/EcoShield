@@ -21,9 +21,10 @@ export default function ContactPage() {
 
   const options = ["Very Useful", "Somewhat", "Not Sure"];
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  setLoading(true);
 
     // IDs are now being pulled from your .env.local file
     const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID; 
